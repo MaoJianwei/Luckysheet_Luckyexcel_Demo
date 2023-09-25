@@ -1,4 +1,4 @@
-# Luckysheet & Luckyexcel
+# Mao Demo of Luckysheet & Luckyexcel
 
 https://github.com/dream-num/Luckysheet
 
