@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>asdgasdg</title>
+<!-- 
+	<link rel='stylesheet' href='./pluginsCss.css' />
+	<link rel='stylesheet' href='./plugins.css' />
+	<link rel='stylesheet' href='./luckysheet.css' />
+	<link rel='stylesheet' href='./iconfont.css' />
+	<script src="./plugin.js"></script>
+	<script src="./luckysheet.umd.js"></script> -->
+
+	<link rel='stylesheet' href='./dist/plugins/css/pluginsCss.css' />
+	<link rel='stylesheet' href='./dist/plugins/plugins.css' />
+	<link rel='stylesheet' href='./dist/css/luckysheet.css' />
+	<link rel='stylesheet' href='./dist/assets/iconfont/iconfont.css' />
+	<script src="./dist/plugins/js/plugin.js"></script>
+	<script src="./dist/luckysheet.umd.js"></script>
+
+	<script src="./luckyexcel.umd.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/luckyexcel/dist/luckyexcel.umd.js"></script> -->
+
+<!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/css/pluginsCss.css' />
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/plugins.css' />
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/css/luckysheet.css' />
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/assets/iconfont/iconfont.css' />
+<script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/js/plugin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/luckysheet.umd.js"></script> -->
+
+</head>
+<body>
+<div id="luckysheet" style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;"></div>
+</body>
+<script>
+    $(function () {
+		var url = 'a.xlsx'
+		LuckyExcel.transformExcelToLuckyByUrl(url, "",  (exportJson, luckysheetfile) => {
+			console.log(exportJson)
+			if (exportJson.sheets == null || exportJson.sheets.length == 0) {
+				alert("读取excel文件内容失败，目前不支持xls文件！");
+				return;
+			}
+
+			luckysheet.create({
+				container: 'luckysheet', // luckysheet is the container id
+				data: exportJson.sheets,
+				title: exportJson.info.name,
+				userInfo: exportJson.info.name.creator,
+
+				// lang: 'zh', // 设定表格语言
+                // allowEdit: true,//作用：是否允许前台编辑
+                // allowUpdate: true,
+                // allowCopy: true, //是否允许拷贝
+                showinfobar: false, //是否显示顶部名称栏
+                showtoolbar: false, //是否第二列显示工具栏
+                sheetFormulaBar: false, // 是否显示公式栏
+                showsheetbar: true, //是否显示底部表格名称区域
+                showstatisticBar: true, //是否显示底部计数栏
+                // pointEdit: false, //是否是编辑器插入表格模式
+
+                sheetBottomConfig: false, // sheet页下方的添加行按钮和回到顶部按钮配置
+                enableAddBackTop: false,
+                enableAddRow: false,
+                enableAddCol: false, 
+
+		        showsheetbarConfig: {
+		            add: false,
+		            menu: true,
+		        },
+			});
+		});
+    })
+</script>
+</html>
